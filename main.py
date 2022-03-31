@@ -1,7 +1,16 @@
+# built-in modules
+import os
+from time import sleep
+
 # my own modules
 from spotify_accesses import AccessSpotify
 from billboard_info import RequestBillboardInfo
 
+def clear_console():
+    command = 'clear'
+    if os.name in ('nt', 'dos'):
+        command = 'cls'
+    os.system(command)    
 
 def get_hot100_playlists():
     bill_object = RequestBillboardInfo()
@@ -16,6 +25,8 @@ def get_hot100_playlists():
             spotify_object.add_items_to_playlist()
     else:
         print('Please use the date format YYYY-MM-DD.')
+        sleep(1)
+        clear_console()
         get_hot100_playlists()
 
 
